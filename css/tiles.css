@@ -1,0 +1,48 @@
+.tile[data-tile="we"] { background-image:url('../images/tiles/we.svg') }
+.tile[data-tile="ws"] { background-image:url('../images/tiles/ws.svg') }
+.tile[data-tile="ww"] { background-image:url('../images/tiles/ww.svg') }
+.tile[data-tile="wn"] { background-image:url('../images/tiles/wn.svg') }
+
+.tile[data-tile="ac"] { background-image:url('../images/tiles/ac.svg') }
+.tile[data-tile="af"] { background-image:url('../images/tiles/af.svg') }
+.tile[data-tile="ab"] { background-image:url('../images/tiles/ab.svg') }
+
+.tile[data-tile="c1"] { background-image:url('../images/tiles/c1.svg') }
+.tile[data-tile="c2"] { background-image:url('../images/tiles/c2.svg') }
+.tile[data-tile="c3"] { background-image:url('../images/tiles/c3.svg') }
+.tile[data-tile="c4"] { background-image:url('../images/tiles/c4.svg') }
+.tile[data-tile="c5"] { background-image:url('../images/tiles/c5.svg') }
+.tile[data-tile="c6"] { background-image:url('../images/tiles/c6.svg') }
+.tile[data-tile="c7"] { background-image:url('../images/tiles/c7.svg') }
+.tile[data-tile="c8"] { background-image:url('../images/tiles/c8.svg') }
+.tile[data-tile="c9"] { background-image:url('../images/tiles/c9.svg') }
+
+.tile[data-tile="b1"] { background-image:url('../images/tiles/b1.svg') }
+.tile[data-tile="b2"] { background-image:url('../images/tiles/b2.svg') }
+.tile[data-tile="b3"] { background-image:url('../images/tiles/b3.svg') }
+.tile[data-tile="b4"] { background-image:url('../images/tiles/b4.svg') }
+.tile[data-tile="b5"] { background-image:url('../images/tiles/b5.svg') }
+.tile[data-tile="b6"] { background-image:url('../images/tiles/b6.svg') }
+.tile[data-tile="b7"] { background-image:url('../images/tiles/b7.svg') }
+.tile[data-tile="b8"] { background-image:url('../images/tiles/b8.svg') }
+.tile[data-tile="b9"] { background-image:url('../images/tiles/b9.svg') }
+
+.tile[data-tile="d1"] { background-image:url('../images/tiles/d1.svg') }
+.tile[data-tile="d2"] { background-image:url('../images/tiles/d2.svg') }
+.tile[data-tile="d3"] { background-image:url('../images/tiles/d3.svg') }
+.tile[data-tile="d4"] { background-image:url('../images/tiles/d4.svg') }
+.tile[data-tile="d5"] { background-image:url('../images/tiles/d5.svg') }
+.tile[data-tile="d6"] { background-image:url('../images/tiles/d6.svg') }
+.tile[data-tile="d7"] { background-image:url('../images/tiles/d7.svg') }
+.tile[data-tile="d8"] { background-image:url('../images/tiles/d8.svg') }
+.tile[data-tile="d9"] { background-image:url('../images/tiles/d9.svg') }
+
+.tile[data-tile="f1"] { background-image:url('../images/tiles/f1.svg') }
+.tile[data-tile="f2"] { background-image:url('../images/tiles/f2.svg') }
+.tile[data-tile="f3"] { background-image:url('../images/tiles/f3.svg') }
+.tile[data-tile="f4"] { background-image:url('../images/tiles/f4.svg') }
+
+.tile[data-tile="s1"] { background-image:url('../images/tiles/s1.svg') }
+.tile[data-tile="s2"] { background-image:url('../images/tiles/s2.svg') }
+.tile[data-tile="s3"] { background-image:url('../images/tiles/s3.svg') }
+.tile[data-tile="s4"] { background-image:url('../images/tiles/s4.svg') }

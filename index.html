@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+		<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="css/styles.css" />
+		<link rel="stylesheet" type="text/css" href="css/tiles.css" />
+		<link rel="stylesheet" type="text/css" href="css/compass.css" />
+	</head>
+	<body>
+
+		<div class="hand ts18">
+			<div class="hand-tiles"></div>
+			<div class="hand-score"></div>
+		</div>
+
+		<div class="lhs">
+
+			<section class="ts5">
+				<div>
+					<div data-tile="c7" class="tile tile-input"></div>
+					<div data-tile="c8" class="tile tile-input"></div>
+					<div data-tile="c9" class="tile tile-input"></div>
+				</div>
+				<div>
+					<div data-tile="c4" class="tile tile-input"></div>
+					<div data-tile="c5" class="tile tile-input"></div>
+					<div data-tile="c6" class="tile tile-input"></div>
+				</div>
+				<div>
+					<div data-tile="c1" class="tile tile-input"></div>
+					<div data-tile="c2" class="tile tile-input"></div>
+					<div data-tile="c3" class="tile tile-input"></div>
+				</div>
+			</section>
+
+			<section class="ts5">
+				<div>
+					<div data-tile="b7" class="tile tile-input"></div>
+					<div data-tile="b8" class="tile tile-input"></div>
+					<div data-tile="b9" class="tile tile-input"></div>
+				</div>
+				<div>
+					<div data-tile="b4" class="tile tile-input"></div>
+					<div data-tile="b5" class="tile tile-input"></div>
+					<div data-tile="b6" class="tile tile-input"></div>
+				</div>
+				<div>
+					<div data-tile="b1" class="tile tile-input"></div>
+					<div data-tile="b2" class="tile tile-input"></div>
+					<div data-tile="b3" class="tile tile-input"></div>
+				</div>
+			</section>
+
+			<section class="ts5">
+				<div>
+					<div data-tile="d7" class="tile tile-input"></div>
+					<div data-tile="d8" class="tile tile-input"></div>
+					<div data-tile="d9" class="tile tile-input"></div>
+				</div>
+				<div>
+					<div data-tile="d4" class="tile tile-input"></div>
+					<div data-tile="d5" class="tile tile-input"></div>
+					<div data-tile="d6" class="tile tile-input"></div>
+				</div>
+				<div>
+					<div data-tile="d1" class="tile tile-input"></div>
+					<div data-tile="d2" class="tile tile-input"></div>
+					<div data-tile="d3" class="tile tile-input"></div>
+				</div>
+			</section>
+
+			<section class="ts5">
+				<div>
+					<div data-tile="we" class="tile tile-input"></div>
+					<div data-tile="ws" class="tile tile-input"></div>
+					<div data-tile="ww" class="tile tile-input"></div>
+					<div data-tile="wn" class="tile tile-input"></div>
+				</div>
+			</section>
+
+			<section class="ts5">
+				<div>
+					<div data-tile="ac" class="tile tile-input"></div>
+					<div data-tile="af" class="tile tile-input"></div>
+					<div data-tile="ab" class="tile tile-input"></div>
+				</div>
+			</section>
+
+			<section class="ts5">
+				<div>
+					<div data-tile="s1" class="tile tile-input"></div>
+					<div data-tile="s2" class="tile tile-input"></div>
+					<div data-tile="s3" class="tile tile-input"></div>
+					<div data-tile="s4" class="tile tile-input"></div>
+				</div>
+			</section>
+
+			<section class="ts5">
+				<div>
+					<div data-tile="f1" class="tile tile-input"></div>
+					<div data-tile="f2" class="tile tile-input"></div>
+					<div data-tile="f3" class="tile tile-input"></div>
+					<div data-tile="f4" class="tile tile-input"></div>
+				</div>
+			</section>
+
+			<section>
+				<div class="label">Prevailing Wind</div>
+				<div class="compass">
+					<img class="rosette" src="images/misc/rosette.svg" />
+					<input type="radio" id="prevEast" name="prevWind" onchange="setPrevWind('east')" />
+					<label for="prevEast" class="compass-east"></label>
+					<input type="radio" id="prevSouth" name="prevWind"onchange=" setPrevWind('south')" />
+					<label for="prevSouth" class="compass-south"></label>
+					<input type="radio" id="prevWest" name="prevWind" onchange="setPrevWind('west')" />
+					<label for="prevWest" class="compass-west"></label>
+					<input type="radio" id="prevNorth" name="prevWind" onchange="setPrevWind('north')" />
+					<label for="prevNorth" class="compass-north"></label>
+				</div>
+			</section>
+			<section>
+				<div class="label">Seat Wind</div>
+				<div class="compass">
+					<img class="rosette" src="images/misc/rosette.svg" />
+					<input type="radio" id="seatEast" name="seatWind" onchange="setSeatWind('east')" />
+					<label for="seatEast" class="compass-east"></label>
+					<input type="radio" id="seatSouth" name="seatWind"onchange=" setSeatWind('south')" />
+					<label for="seatSouth" class="compass-south"></label>
+					<input type="radio" id="seatWest" name="seatWind" onchange="setSeatWind('west')" />
+					<label for="seatWest" class="compass-west"></label>
+					<input type="radio" id="seatNorth" name="seatWind" onchange="setSeatWind('north')" />
+					<label for="seatNorth" class="compass-north"></label>
+				</div>
+			</section>
+			<section>
+				<div class="label">Special Conditions</div>
+
+				<input type="checkbox" id="lastTileFromWall" onchange="checkboxOnChange(this);" />
+				<label for="lastTileFromWall" class="checkbox">
+					<div>
+						Last tile was drawn from the wall.
+					</div>
+				</label>
+
+				<input type="checkbox" id="lastTileFromKongBox" onchange="checkboxOnChange(this);" />
+				<label for="lastTileFromKongBox" class="checkbox">
+					<div>
+						Last tile was drawn from the kong box.
+					</div>
+				</label>
+
+				<input type="checkbox" id="lastTileOnlyPossible" onchange="checkboxOnChange(this);" />
+				<label for="lastTileOnlyPossible" class="checkbox">
+					<div>
+						Last tile was the only tile that could complete your hand.
+					</div>
+				</label>
+
+				<input type="checkbox" id="lastTileFromRobbedKong" onchange="checkboxOnChange(this);" />
+				<label for="lastTileFromRobbedKong" class="checkbox">
+					<div>
+						Last tile was from a robbed kong.
+					</div>
+				</label>
+
+				<input type="checkbox" id="allButLastTileConcealed" onchange="checkboxOnChange(this);" />
+				<label for="allButLastTileConcealed" class="checkbox">
+					<div>
+						All but the last tile was concealed.
+					</div>
+				</label>
+
+				<input type="checkbox" id="immediateMahjong" onchange="checkboxOnChange(this);" />
+				<label for="immediateMahjong" class="checkbox">
+					<div>
+						Mahjong was declared immediately after dealing.
+					</div>
+				</label>
+
+			</section>
+		</div>
+		<div class="rhs ts5">
+			<section>
+				<div data-tile="tb" class="tile"></div>
+			</section>
+
+			<section class="icon-buttons">
+				
+				<div class="icon-button" onclick="clearHand()">
+					<i class="fas fa-trash-alt"></i>
+				</div>
+				<div class="icon-button">
+					<i class="fa fa-copy"></i>
+				</div>
+				<div class="icon-button" onclick="showInfo()">
+					<i class="fa fa-info-circle"></i>
+				</div>
+			</section>
+		</div>
+
+		<div class="modal-veil info-veil" onclick="hideInfo()" style="display: none">
+			<div class="modal-info">
+				<span class="label">ScoreMahjong.com</span>
+				<br><br>Made by Jared Mericka
+				<!-- <br>Translation by Xian Yang Wong -->
+				<br><br>Based on Classical Chinese<br>scoring rules found <a href="http://mahjong.wikidot.com/rules:chinese-classical-scoring">here</a>
+				<br><br>version: 1.0b
+			</div>
+		</div>
+
+		<!-- <img style="position:fixed; bottom:0; left:0;" src="images/flair/parrot.gif"/> -->
+		<!-- <img style="position:fixed; bottom:0; left:0;" src="images/flair/fireworks.gif"/> -->
+
+	</body>
+	<script src="js/scoreTests.js"></script>
+	<script src="js/tiles.js"></script>
+	<script src="js/feature.js"></script>
+	<script src="js/main.js"></script>
+
+	<script>
+		function init () {
+			let tileInputs = document.querySelectorAll('[data-tile]');
+			for (var i = 0; i < tileInputs.length; i++) {
+				let tile = tiles[tileInputs[i].dataset.tile];
+				tileInputs[i].onclick = function () {
+					addToHand(tile);
+				}
+			}
+		};
+		init();
+	</script>
+</html>

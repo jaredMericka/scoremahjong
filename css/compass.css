@@ -1,0 +1,71 @@
+.compass {
+	position: relative;
+	display: inline-block;
+	width: 75vw;
+	height: 75vw;
+
+	margin-top: 5vw;
+	/* background-repeat: no-repeat;
+	background-image: url('../images/misc/rosette.svg');
+	background-size: contain; */
+}
+
+.rosette {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	opacity: 0.3;
+}
+
+.compass-east,
+.compass-south,
+.compass-west,
+.compass-north {
+	background-repeat: no-repeat;
+	position: absolute;
+	background-size: 12vw;
+	background-position: center center;
+	height: 25vw;
+	width: 25vw;
+	opacity: 0.2;
+}
+
+input[type="radio"] {
+	display: none;
+}
+
+.compass-east {
+	background-image: url('../images/misc/east-b.svg');
+	top: 25vw;
+	right: 0;
+}
+#prevEast:checked+label { background-image: url('../images/misc/east-w.svg'); opacity: 1; }
+#seatEast:checked+label { background-image: url('../images/misc/east-w.svg'); opacity: 1; }
+
+.compass-south {
+	background-image: url('../images/misc/south-b.svg');
+	left: 25vw;
+	bottom: 0;
+}
+#prevSouth:checked+label { background-image: url('../images/misc/south-w.svg'); opacity: 1; }
+#seatSouth:checked+label { background-image: url('../images/misc/south-w.svg'); opacity: 1; }
+
+.compass-west {
+	background-image: url('../images/misc/west-b.svg');
+	top: 25vw;
+	left: 0;
+}
+#prevWest:checked+label { background-image: url('../images/misc/west-w.svg'); opacity: 1; }
+#seatWest:checked+label { background-image: url('../images/misc/west-w.svg'); opacity: 1; }
+
+.compass-north {
+	background-image: url('../images/misc/north-b.svg');
+	left: 25vw;
+	top:0;
+}
+#prevNorth:checked+label { background-image: url('../images/misc/north-w.svg'); opacity: 1; }
+#seatNorth:checked+label { background-image: url('../images/misc/north-w.svg'); opacity: 1; }
