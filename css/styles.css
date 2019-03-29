@@ -221,3 +221,16 @@ input[type="checkbox"]:checked+label::after {
 
 	box-sizing: border-box;
 }
+
+.prefetcher {
+	position: fixed;
+	left: -1000px;
+	height: 0px;
+	width: 0px;
+
+	background-image: url('../images/misc/radio-dot-w.svg'),
+		url('../images/misc/east-w.svg'),
+		url('../images/misc/south-w.svg'),
+		url('../images/misc/north-w.svg'),
+		url('../images/misc/west-w.svg');
+}

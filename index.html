@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43440648-2"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-43440648-2');
+		</script>
+
+
+		<title>Score Mahjong</title>
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
 		<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -9,6 +21,19 @@
 		<link rel="stylesheet" type="text/css" href="css/compass.css" />
 	</head>
 	<body>
+
+		<div class="modal-veil info-veil" onclick="hideInfo()" style="display: none">
+			<div class="modal-info">
+				<span class="label">ScoreMahjong.com</span>
+				<br>Mahjong score calculator
+				<br><br>Made by Jared Mericka
+				<!-- <br>Translation by Xian Yang Wong -->
+				<br><br>ScoreMahjong is completely free but please consider donating if you find it useful.
+				<br><a href="https://paypal.me/JMericka">Donate here to keep it alive!</a>
+				<br><br>Based on Classical Chinese<br>scoring rules found <a href="http://mahjong.wikidot.com/rules:chinese-classical-scoring">here</a>
+				<br><br>version: 0.3b
+			</div>
+		</div>
 
 		<div class="hand ts18">
 			<div class="hand-tiles"></div>
@@ -178,7 +203,6 @@
 						Mahjong was declared immediately after dealing.
 					</div>
 				</label>
-
 			</section>
 		</div>
 		<div class="rhs ts5">
@@ -191,28 +215,20 @@
 				<div class="icon-button" onclick="clearHand()">
 					<i class="fas fa-trash-alt"></i>
 				</div>
-				<div class="icon-button">
+
+				<!-- <div class="icon-button">
 					<i class="fa fa-copy"></i>
-				</div>
+				</div> -->
+
 				<div class="icon-button" onclick="showInfo()">
 					<i class="fa fa-info-circle"></i>
 				</div>
 			</section>
 		</div>
 
-		<div class="modal-veil info-veil" onclick="hideInfo()" style="display: none">
-			<div class="modal-info">
-				<span class="label">ScoreMahjong.com</span>
-				<br><br>Made by Jared Mericka
-				<!-- <br>Translation by Xian Yang Wong -->
-				<br><br>Based on Classical Chinese<br>scoring rules found <a href="http://mahjong.wikidot.com/rules:chinese-classical-scoring">here</a>
-				<br><br>version: 1.0b
-			</div>
-		</div>
+		
 
-		<!-- <img style="position:fixed; bottom:0; left:0;" src="images/flair/parrot.gif"/> -->
-		<!-- <img style="position:fixed; bottom:0; left:0;" src="images/flair/fireworks.gif"/> -->
-
+		<div class="prefetcher"></div>
 	</body>
 	<script src="js/scoreTests.js"></script>
 	<script src="js/tiles.js"></script>

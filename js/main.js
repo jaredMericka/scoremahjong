@@ -77,6 +77,13 @@ function removeFromHand(index) {
 function clearHand () {
 	hand = [];
 	updateHandDisplay();
+
+	let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+	for (var i = 0; i < checkboxes.length; i++) {
+		checkboxes[i].checked = false;
+		checkboxes[i].onchange();
+	}
 }
 
 function setPrevWind(wind) {
