@@ -31,7 +31,7 @@
 				<br><br>ScoreMahjong is completely free but please consider donating if you find it useful.
 				<br><a href="https://paypal.me/JMericka">Donate here to keep it alive!</a>
 				<br><br>Based on Classical Chinese<br>scoring rules found <a href="http://mahjong.wikidot.com/rules:chinese-classical-scoring">here</a>
-				<br><br>version: 0.3b
+				<br><br>version: 0.4b
 			</div>
 		</div>
 
@@ -216,9 +216,9 @@
 					<i class="fas fa-trash-alt"></i>
 				</div>
 
-				<!-- <div class="icon-button">
+				<div class="icon-button" onclick="copyHandString()">
 					<i class="fa fa-copy"></i>
-				</div> -->
+				</div>
 
 				<div class="icon-button" onclick="showInfo()">
 					<i class="fa fa-info-circle"></i>
@@ -227,8 +227,11 @@
 		</div>
 
 		
-
-		<div class="prefetcher"></div>
+		
+		<div class="prefetcher">
+			<input class="copyInput" type="text" />
+			<div class="copyDiv"></div>
+		</div>
 	</body>
 	<script src="js/scoreTests.js"></script>
 	<script src="js/tiles.js"></script>

@@ -28,14 +28,14 @@ function testIsMahjong() {
 	return tilesFound === 14;
 }
 
-function testIsAllHonors() {
+function testAllHonors() {
 	for (var i = 0; i < hand.length; i++) {
 		if (hand[i].suit) return false;
 	}
 	return true;
 }
 
-function testIsAllOneSuit() {
+function testAllOneSuit() {
 	let suit = null;
 	for (var i = 0; i < hand.length; i++) {
 		let handTile = hand[i];
@@ -49,7 +49,7 @@ function testIsAllOneSuit() {
 	return true;
 }
 
-function testIsAllOneSuitAndHonors() {
+function testAllOneSuitAndHonors() {
 	let suit = null;
 	for (var i = 0; i < hand.length; i++) {
 		let handTile = hand[i];
@@ -60,6 +60,20 @@ function testIsAllOneSuitAndHonors() {
 				return false;
 			}
 		}
+	}
+	return true;
+}
+
+function testAllTerminalsAndHonors () {
+	for (var i = 0; i < hand.length; i++) {
+		switch (hand[i].type) {
+			case TYPE_SPECIAL:
+			case TYPE_TERMINAL:
+			case TYPE_WIND:
+			case TYPE_ARROW:
+				continue;
+		}
+		return false;
 	}
 	return true;
 }
@@ -114,6 +128,7 @@ function testAllFeaturesConcealed () {
 	for (var i = 0; i < features.length; i++) {
 		let feature = features[i];
 		if (!feature.type) return false;
+		if (feature.type === FEATURE_TYPE_LONE) continue;
 		if (feature.status === FEATURE_STATUS_EXPOSED) return false;
 	}
 	return true;
@@ -140,17 +155,142 @@ function testHasOwnFlower() {
 }
 
 function testHasAllSeasons () {
-	if (hand.indexOf(tiles['s1'] === -1)) return false;
-	if (hand.indexOf(tiles['s2'] === -1)) return false;
-	if (hand.indexOf(tiles['s3'] === -1)) return false;
-	if (hand.indexOf(tiles['s4'] === -1)) return false;
+	if (hand.indexOf(tiles['s1']) === -1) return false;
+	if (hand.indexOf(tiles['s2']) === -1) return false;
+	if (hand.indexOf(tiles['s3']) === -1) return false;
+	if (hand.indexOf(tiles['s4']) === -1) return false;
 	return true;
 }
 
 function testHasAllFlowers () {
-	if (hand.indexOf(tiles['f1'] === -1)) return false;
-	if (hand.indexOf(tiles['f2'] === -1)) return false;
-	if (hand.indexOf(tiles['f3'] === -1)) return false;
-	if (hand.indexOf(tiles['f4'] === -1)) return false;
+	if (hand.indexOf(tiles['f1']) === -1) return false;
+	if (hand.indexOf(tiles['f2']) === -1) return false;
+	if (hand.indexOf(tiles['f3']) === -1) return false;
+	if (hand.indexOf(tiles['f4']) === -1) return false;
 	return true;
+}
+
+// Not yet in use
+function testFourKongs () {
+	let kongs = 0;
+	for (var i = 0; i < features.length; i++)
+		if (features[i].type === FEATURE_TYPE_KONG) kongs++;
+	return kongs === 4;
+}
+
+function testAllConcealedAllScoreing () {
+	return testNoChows() && testAllFeaturesConcealed();
+}
+
+function testAllTerminals () {
+	for (var i = 0; i < hand.length; i++) {
+		switch (hand[i].type) {
+			case TYPE_SPECIAL:
+			case TYPE_TERMINAL:
+				continue;
+		}
+		return false;
+	}
+	return true;
+}
+
+function testAllSimples () {
+	for (var i = 0; i < hand.length; i++) {
+		switch (hand[i].type) {
+			case TYPE_SPECIAL:
+			case TYPE_SIMPLE:
+				continue;
+		}
+		return false;
+	}
+	return true;
+}
+
+// Limit hands /////////////////////////////////////////////////////////////////
+
+function testThirteenOrphans () {
+	if (hand.indexOf(tiles['b1']) === -1) return false;
+	if (hand.indexOf(tiles['b9']) === -1) return false;
+	if (hand.indexOf(tiles['c1']) === -1) return false;
+	if (hand.indexOf(tiles['c9']) === -1) return false;
+	if (hand.indexOf(tiles['d1']) === -1) return false;
+	if (hand.indexOf(tiles['d9']) === -1) return false;
+	if (hand.indexOf(tiles['ac']) === -1) return false;
+	if (hand.indexOf(tiles['ab']) === -1) return false;
+	if (hand.indexOf(tiles['af']) === -1) return false;
+	if (hand.indexOf(tiles['we']) === -1) return false;
+	if (hand.indexOf(tiles['ws']) === -1) return false;
+	if (hand.indexOf(tiles['ww']) === -1) return false;
+	if (hand.indexOf(tiles['wn']) === -1) return false;
+
+	let orphans = [
+		tiles['b1'],
+		tiles['b9'],
+		tiles['c1'],
+		tiles['c9'],
+		tiles['d1'],
+		tiles['d9'],
+		tiles['ac'],
+		tiles['ab'],
+		tiles['af'],
+		tiles['we'],
+		tiles['ws'],
+		tiles['ww'],
+		tiles['wn']
+	];
+
+	let foundOrphans = 0;
+
+	for (var i = 0; i < hand.length; i++) {
+		if (hand[i].type === TYPE_SPECIAL) continue;
+		if (orphans.indexOf(hand[i]) === -1) return false;
+		foundOrphans++;
+	}
+
+	if (foundOrphans !== 14) return false;
+
+	return true;
+}
+
+function testBigThreeDragons () {
+
+	let acFound = false;
+	let afFound = false;
+	let abFound = false;
+
+	for (var i = 0; i < features.length; i++) {
+		if (features[i].type === FEATURE_TYPE_PUNG || features[i].type === FEATURE_TYPE_KONG) {
+			let firstTile = features[i].getFirstTile();
+			switch (firstTile.value) {
+				case VALUE_ARROW_BOARD:		abFound = true; break;
+				case VALUE_ARROW_FORTUNE:	afFound = true; break;
+				case VALUE_ARROW_CENTRAL:	acFound = true; break;
+			}
+		}
+	}
+
+	return acFound && abFound && afFound;
+}
+
+function testLittleThreeDragons () {
+
+	let acFound = false;
+	let afFound = false;
+	let abFound = false;
+	let pairFound = false;
+
+	for (var i = 0; i < features.length; i++) {
+		if (features[i].type === FEATURE_TYPE_PUNG || features[i].type === FEATURE_TYPE_KONG || features[i].type === FEATURE_TYPE_PAIR) {
+			let firstTile = features[i].getFirstTile();
+			switch (firstTile.value) {
+				case VALUE_ARROW_BOARD:		abFound = true; break;
+				case VALUE_ARROW_FORTUNE:	afFound = true; break;
+				case VALUE_ARROW_CENTRAL:	acFound = true; break;
+			}
+
+			if (features[i].type === FEATURE_TYPE_PAIR) pairFound = true;
+		}
+	}
+
+	return acFound && abFound && afFound && pairFound;
 }

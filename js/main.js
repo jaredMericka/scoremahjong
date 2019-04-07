@@ -3,6 +3,7 @@ let hand			= [];
 let features		= [];
 let seatWind		= null;
 let prevailingWind	= null;
+let score			= 0;
 
 // These need to be var so that we can access them via "window".
 var lastTileFromWall		= false;
@@ -13,7 +14,7 @@ var allButLastTileConcealed	= false;
 var immediateMahjong		= false;
 
 function updateScore () {
-	let score = 0;
+	score = 0;
 	let doublers = 0;
 	let isMahjong = testIsMahjong();
 	let scoreDiv = document.querySelector('.hand-score');
@@ -34,13 +35,14 @@ function updateScore () {
 		if (testNoChows())				score += 10;
 		
 		if (lastTileFromRobbedKong)			doublers += 1;
-		if (lastTileFromWall)				doublers += 1;
+		if (lastTileFromKongBox)			doublers += 1;
 		if (testAllFeaturesConcealed())		doublers += 2;
 		else if (allButLastTileConcealed)	doublers += 1;
 		if (immediateMahjong)				doublers += 3;
-		if (testIsAllOneSuit())				doublers += 3;
-		if (testIsAllOneSuitAndHonors())	doublers += 3;
-		if (testIsAllHonors())				doublers += 3;
+		if (testAllOneSuit())				doublers += 3;
+		if (testAllOneSuitAndHonors())		doublers += 3;
+		if (testAllTerminalsAndHonors())	doublers += 3;
+		if (testAllHonors())				doublers += 3;
 	}
 
 	// Add doublers
@@ -168,4 +170,32 @@ function showInfo() {
 
 function hideInfo() {
 	document.querySelector('.info-veil').style.display = 'none';
+}
+
+function getHandString () {
+	let handString = '';
+
+	for (var i = 0; i < features.length; i++) {
+		let feature = features[i];
+
+		for (var j = 0; j < feature.tiles.length; j++) {
+			handString = handString + feature.tiles[j].char;
+		}
+
+		if (i < features.length - 1) handString = handString + ' ';
+	}
+
+	handString = handString + '\nScrore: ' + score + (testIsMahjong() ? ' Mahjong!' : '');
+
+	return handString;
+}
+
+function copyHandString () {
+	let copyInput = document.querySelector('.copyInput');
+	let copyDiv = document.querySelector('.copyDiv');
+
+	copyDiv.innerHTML = getHandString();
+	copyInput.value = copyDiv.innerHTML;
+	copyInput.select();
+	document.execCommand('copy');
 }
