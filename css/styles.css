@@ -210,7 +210,7 @@ input[type="checkbox"]:checked+label::after {
 .modal-info {
 	position: absolute;
 	color: #fff;
-	font-size: 4vw;
+	font-size: 3.5vw;
 	
 	background-color: #222;
 	padding: 10vw;

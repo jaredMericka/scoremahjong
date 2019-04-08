@@ -5,6 +5,8 @@ let seatWind		= null;
 let prevailingWind	= null;
 let score			= 0;
 
+let SCORE_LIMIT		= 500;
+
 // These need to be var so that we can access them via "window".
 var lastTileFromWall		= false;
 var lastTileFromKongBox		= false;
@@ -25,40 +27,63 @@ function updateScore () {
 		score += feature.getScore();
 	}
 
+	// Test for unconventional limit hands
+	if (testThirteenOrphans())			score = Infinity;
+	if (testAllConcealedAllScoreing())	score = Infinity;
+	
 	// Add mahjong score
 	if (isMahjong) {
-		score += 20;
-		if (lastTileFromWall)			score += 2;
-		if (lastTileOnlyPossible)		score += 2;
-		if (lastTileFromKongBox)		score += 10;
-		if (testNoScoringFeatures())	score += 10;
-		if (testNoChows())				score += 10;
-		
-		if (lastTileFromRobbedKong)			doublers += 1;
-		if (lastTileFromKongBox)			doublers += 1;
-		if (testAllFeaturesConcealed())		doublers += 2;
-		else if (allButLastTileConcealed)	doublers += 1;
-		if (immediateMahjong)				doublers += 3;
-		if (testAllOneSuit())				doublers += 3;
-		if (testAllOneSuitAndHonors())		doublers += 3;
-		if (testAllTerminalsAndHonors())	doublers += 3;
-		if (testAllHonors())				doublers += 3;
-	}
 
-	// Add doublers
-	if (testPungOrKongOfSpecialWind())	doublers += 1;
-	if (testPungOrKongOfArrows())		doublers += 1;
-	if (testHasOwnFlower())				doublers += 1;
-	if (testHasOwnSeason())				doublers += 1;
-	if (testHasAllFlowers())			doublers += 3;
-	if (testHasAllSeasons())			doublers += 3;
+		// Test mahjong-dependent limit hands
+		if (testFourKongs())			score = Infinity;
+		if (testAllTerminals())			score = Infinity;
+		if (testAllHonors())			score = Infinity;
+		if (testBigThreeDragons())		score = Infinity;
+		if (immediateMahjong)			score = Infinity;
+		if (testBigFourWinds())			score = Infinity;
+		if (testLittleFourWinds())		score = Infinity;
+
+		if (score !== Infinity) {
+			score += 20;
+			if (lastTileFromWall)			score += 2;
+			if (lastTileOnlyPossible)		score += 2;
+			if (lastTileFromKongBox)		score += 10;
+			if (testNoScoringFeatures())	score += 10;
+			if (testNoChows())				score += 10;
+	
+			// Add doublers
+			
+			if (lastTileFromRobbedKong)			doublers += 1;
+			if (lastTileFromKongBox)			doublers += 1;
+			if (testPungOrKongOfSpecialWind())	doublers += 1;
+			if (testPungOrKongOfArrows())		doublers += 1;
+			if (testHasOwnFlower())				doublers += 1;
+			if (testHasOwnSeason())				doublers += 1;
+	
+			if (testAllFeaturesConcealed())		doublers += 2;
+			else if (allButLastTileConcealed)	doublers += 1;
+			
+			if (testAllOneSuit())				doublers += 4;
+			if (testAllOneSuitAndHonors())		doublers += 3;
+			if (testAllTerminalsAndHonors())	doublers += 3;
+			if (testAllHonors())				doublers += 3;
+			if (testLittleThreeDragons())		doublers += 3;
+			if (testHasAllFlowers())			doublers += 4;
+			if (testHasAllSeasons())			doublers += 4;
+		}
+	}
 
 	for (var i = 0; i < doublers; i ++) {
 		score = score * 2;
 	}
 
 	if (score || isMahjong) {
-		scoreDiv.innerHTML = "Score: " + score + (isMahjong ? ' Mahjong!' : '');
+		let displayScore = score;
+		if (score > SCORE_LIMIT) {
+			displayScore = '500 (' + (score === Infinity ? '&infin;' : score) + ')';
+		}
+
+		scoreDiv.innerHTML = "Score: " + displayScore + (isMahjong ? ' Mahjong!' : '');
 	} else {
 		scoreDiv.innerHTML = '';
 	}
@@ -185,7 +210,7 @@ function getHandString () {
 		if (i < features.length - 1) handString = handString + ' ';
 	}
 
-	handString = handString + '\nScrore: ' + score + (testIsMahjong() ? ' Mahjong!' : '');
+	handString = handString + ' Scrore: ' + score + (testIsMahjong() ? ' Mahjong!' : '');
 
 	return handString;
 }
@@ -198,4 +223,5 @@ function copyHandString () {
 	copyInput.value = copyDiv.innerHTML;
 	copyInput.select();
 	document.execCommand('copy');
+	copyInput.blur();
 }

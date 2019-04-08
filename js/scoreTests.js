@@ -39,6 +39,7 @@ function testAllOneSuit() {
 	let suit = null;
 	for (var i = 0; i < hand.length; i++) {
 		let handTile = hand[i];
+		if (handTile.type === TYPE_SPECIAL) continue;
 		if (!handTile.suit) return false;
 		if (!suit) {
 			suit = handTile.suit;
@@ -53,6 +54,7 @@ function testAllOneSuitAndHonors() {
 	let suit = null;
 	for (var i = 0; i < hand.length; i++) {
 		let handTile = hand[i];
+		if (handTile.type === TYPE_SPECIAL) continue;
 		if (handTile.suit) {
 			if (!suit) {
 				suit = handTile.suit;
@@ -261,6 +263,7 @@ function testBigThreeDragons () {
 	for (var i = 0; i < features.length; i++) {
 		if (features[i].type === FEATURE_TYPE_PUNG || features[i].type === FEATURE_TYPE_KONG) {
 			let firstTile = features[i].getFirstTile();
+			if (firstTile.type !== TYPE_ARROW) continue;
 			switch (firstTile.value) {
 				case VALUE_ARROW_BOARD:		abFound = true; break;
 				case VALUE_ARROW_FORTUNE:	afFound = true; break;
@@ -282,6 +285,7 @@ function testLittleThreeDragons () {
 	for (var i = 0; i < features.length; i++) {
 		if (features[i].type === FEATURE_TYPE_PUNG || features[i].type === FEATURE_TYPE_KONG || features[i].type === FEATURE_TYPE_PAIR) {
 			let firstTile = features[i].getFirstTile();
+			if (firstTile.type !== TYPE_ARROW) continue;
 			switch (firstTile.value) {
 				case VALUE_ARROW_BOARD:		abFound = true; break;
 				case VALUE_ARROW_FORTUNE:	afFound = true; break;
@@ -293,4 +297,59 @@ function testLittleThreeDragons () {
 	}
 
 	return acFound && abFound && afFound && pairFound;
+}
+
+function testBigFourWinds () {
+
+	let ewFound = false;
+	let swFound = false;
+	let wwFound = false;
+	let nwFound = false;
+
+	for (var i = 0; i < features.length; i++) {
+		if (features[i].type === FEATURE_TYPE_PUNG || features[i].type === FEATURE_TYPE_KONG) {
+			let firstTile = features[i].getFirstTile();
+			if (firstTile.type !== TYPE_WIND) continue;
+			switch (firstTile.value) {
+				case VALUE_WIND_EAST:	ewFound = true; break;
+				case VALUE_WIND_SOUTH:	swFound = true; break;
+				case VALUE_WIND_WEST:	wwFound = true; break;
+				case VALUE_WIND_NORTH:	nwFound = true; break;
+			}
+		}
+	}
+
+	return ewFound && swFound && wwFound && nwFound;
+}
+
+function testLittleFourWinds () {
+
+	let ewFound = false;
+	let swFound = false;
+	let wwFound = false;
+	let nwFound = false;
+	let pairFound = false;
+
+	for (var i = 0; i < features.length; i++) {
+		if (features[i].type === FEATURE_TYPE_PUNG || features[i].type === FEATURE_TYPE_KONG || features[i].type === FEATURE_TYPE_PAIR) {
+			let firstTile = features[i].getFirstTile();
+			if (firstTile.type !== TYPE_WIND) continue;
+			switch (firstTile.value) {
+				case VALUE_WIND_EAST:	ewFound = true; break;
+				case VALUE_WIND_SOUTH:	swFound = true; break;
+				case VALUE_WIND_WEST:	wwFound = true; break;
+				case VALUE_WIND_NORTH:	nwFound = true; break;
+			}
+
+			if (features[i].type === FEATURE_TYPE_PAIR) pairFound = true;
+		}
+	}
+
+	return ewFound && swFound && wwFound && nwFound && pairFound;
+}
+
+// Do big and small winds here
+
+function testNineGates () {
+
 }
