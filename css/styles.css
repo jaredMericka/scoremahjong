@@ -198,7 +198,7 @@ a {
 	text-shadow: 0 0 2vw rgba(0,0,0,0.3);
 	min-height: 3vw;
 
-	border: solid 2vw green;
+	/* border: solid 2vw green; */
 }
 
 .icon-button:hover {

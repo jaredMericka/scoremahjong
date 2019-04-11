@@ -238,6 +238,7 @@ function updateScore () {
 	} else {
 		scoreDiv.innerHTML = '';
 		breakdownDiv.innerHTML = '';
+		document.getElementsByClassName('hand')[0].classList.remove('show-breakdown');
 	}
 }
 
