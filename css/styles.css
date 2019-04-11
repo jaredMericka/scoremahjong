@@ -23,8 +23,12 @@ a {
 	background-color: #600;
 	box-shadow: 0 0 5vh #000;
 	z-index: 5;
-	overflow: scroll;
+	overflow-x: scroll;
+	overflow-y: hidden;
 	white-space: nowrap;
+
+	transition-property: all;
+	transition-duration: 0.3s;
 }
 
 .hand-score {
@@ -33,7 +37,70 @@ a {
 	right: 0;
 	color: #fff;
 	margin-top: 5vw;
-	font-size: 8vw;
+	font-size: 7vw;
+}
+
+.hand-breakdown {
+	position: sticky;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 35vw;
+	padding: 5vw 0;
+
+	box-sizing: border-box;
+
+	overflow-y: scroll;
+	height: calc(80vh - 40vw);
+
+	font-size: 4vw;
+	color: #fff;
+
+	justify-content: center;
+}
+
+.hand-breakdown table {
+	width: 80vw;
+	margin: 0 10vw;
+}
+
+.total-line hr{
+	height: 1pt;
+	background-color: #fc5;
+	border: none;
+	width: 100%;
+	margin: 1vw 0;
+}
+
+.breakdown-message,
+.breakdown-total {
+	text-align: left;
+}
+
+.breakdown-total {
+	color: #fc5;
+	padding-bottom: 4vw;
+}
+
+.breakdown-calc {
+	font-size: 7vw;
+}
+
+.breakdown-points {
+	font-family: 'Fira Mono', monospace;
+	text-align: right;
+	color: #fc5;
+	white-space: pre;
+}
+
+.hand.show-breakdown {
+	height: 80vh
+}
+
+.hand-breakdown th {
+	text-align: left;
+	padding: 2vw 0;
+	color: #fc5;
 }
 
 .feature {
@@ -59,7 +126,6 @@ a {
 	bottom: 0;
 	right: 0;
 	width: 20vw;
-	/* background-color: rgba(0,0,0,0.3); */
 }
 
 .tile {
@@ -130,6 +196,9 @@ a {
 	font-size: 10vw;
 	margin-bottom: 5vw;
 	text-shadow: 0 0 2vw rgba(0,0,0,0.3);
+	min-height: 3vw;
+
+	border: solid 2vw green;
 }
 
 .icon-button:hover {
@@ -233,4 +302,35 @@ input[type="checkbox"]:checked+label::after {
 		url('../images/misc/south-w.svg'),
 		url('../images/misc/north-w.svg'),
 		url('../images/misc/west-w.svg');
+}
+
+.toast-container {
+	position: fixed;
+	width: 100%;
+	height: 0;
+
+	bottom: -5vw;
+	opacity: 0;
+
+	transition-property: all;
+	transition-duration: 0.5s;
+
+	pointer-events: none;
+
+}
+
+.toast-container__visible {
+	height: 25vw;
+	opacity: 0.9;
+}
+
+.toast {
+	max-width: 70vw;
+	display: inline-block;
+	font-size: 3.5vw;
+	padding: 3vw 8vw;
+	border-radius: 100vw;
+	background-color: #222;
+	color: #fff;
+	box-shadow: 0 0 3vw rgba(0,0,0,0.6);
 }

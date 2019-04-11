@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43440648-2"></script>
 		<script>
@@ -11,10 +10,12 @@
 			gtag('config', 'UA-43440648-2');
 		</script>
 
-
 		<title>Score Mahjong</title>
+
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
-		<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+		<meta name="theme-color" content="#660000" />
+
+		<link href="https://fonts.googleapis.com/css?family=Dosis|Fira+Mono" rel="stylesheet">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="css/styles.css" />
 		<link rel="stylesheet" type="text/css" href="css/tiles.css" />
@@ -33,13 +34,14 @@
 				<br><br>Based on Classical Chinese<br>scoring rules found <a href="http://mahjong.wikidot.com/rules:chinese-classical-scoring">here</a>
 				<br><br>This is a work in progress so
 				<br><a href="mailto:feedback@scoremahjong.com">please let me know if I need to fix something!</a>
-				<br><br>version: 0.6b
+				<br><br>version: 0.8<i>&beta;</i>
 			</div>
 		</div>
 
 		<div class="hand ts18">
 			<div class="hand-tiles"></div>
-			<div class="hand-score"></div>
+			<div class="hand-score" onclick="toggleBreakdown()"></div>
+			<div class="hand-breakdown"></div>
 		</div>
 
 		<div class="lhs">
@@ -233,6 +235,10 @@
 		<div class="prefetcher">
 			<input class="copyInput" type="text" />
 			<div class="copyDiv"></div>
+		</div>
+
+		<div class="toast-container">
+			<div class="toast"></div>
 		</div>
 	</body>
 	<script src="js/scoreTests.js"></script>

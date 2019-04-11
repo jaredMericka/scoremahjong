@@ -78,7 +78,7 @@ function Feature() {
 
 			if (tile.value === expectedChowValue) {
 				this.tiles.push(tile);
-				this.type = FEATURE_TYPE_CHOW;
+				if (this.tiles.length === 3) this.type = FEATURE_TYPE_CHOW;
 				return true;
 			}
 		}
@@ -136,5 +136,25 @@ function Feature() {
 			return false;
 		}
 		return firstTile;
+	}
+
+	this.getString = function () {
+		let string = ucFirst(this.status) + ' ' + this.type;
+		let firstTile = this.getFirstTile();
+
+		if (this.type === FEATURE_TYPE_LONE) {
+			return (firstTile.id[0] === 'f' ? 'Flower ' : 'Season ') + '(' + ucFirst(firstTile.value) + ')';
+		}
+
+		switch (this.type) {
+			case FEATURE_TYPE_CHOW: break;
+			case FEATURE_TYPE_PUNG:
+			case FEATURE_TYPE_KONG:
+			case FEATURE_TYPE_PAIR:
+				string = string + ' of ' + firstTile.type + 's';
+				break;
+		}
+
+		return string;
 	}
 }

@@ -39,7 +39,7 @@ function testAllOneSuit() {
 	let suit = null;
 	for (var i = 0; i < hand.length; i++) {
 		let handTile = hand[i];
-		if (handTile.type === TYPE_SPECIAL) continue;
+		if (!handTile.type || handTile.type === TYPE_SPECIAL) continue;
 		if (!handTile.suit) return false;
 		if (!suit) {
 			suit = handTile.suit;
@@ -52,18 +52,19 @@ function testAllOneSuit() {
 
 function testAllOneSuitAndHonors() {
 	let suit = null;
+	let honoursFound = false;
 	for (var i = 0; i < hand.length; i++) {
 		let handTile = hand[i];
-		if (handTile.type === TYPE_SPECIAL) continue;
+		if (!handTile.type || handTile.type === TYPE_SPECIAL) continue;
 		if (handTile.suit) {
 			if (!suit) {
 				suit = handTile.suit;
 			} else if (handTile.suit !== suit) {
 				return false;
 			}
-		}
+		} else honoursFound = true;
 	}
-	return true;
+	return honoursFound;
 }
 
 function testAllTerminalsAndHonors () {
@@ -102,13 +103,25 @@ function testNoChows () {
 	return true;
 }
 
-function testPungOrKongOfSpecialWind () {
+function testPungOrKongOfSeatWind () {
 	for (var i = 0; i < features.length; i++) {
 		switch (features[i].type) {
 			case FEATURE_TYPE_PUNG:
 			case FEATURE_TYPE_KONG:
 				let firstTile = features[i].getFirstTile();
-				if (firstTile.value === prevailingWind || firstTile.value === seatWind) return true;
+				if (firstTile.value === seatWind) return true;
+		}
+	}
+	return false;
+}
+
+function testPungOrKongOfPrevailingWind () {
+	for (var i = 0; i < features.length; i++) {
+		switch (features[i].type) {
+			case FEATURE_TYPE_PUNG:
+			case FEATURE_TYPE_KONG:
+				let firstTile = features[i].getFirstTile();
+				if (firstTile.value === prevailingWind) return true;
 		}
 	}
 	return false;
@@ -180,7 +193,7 @@ function testFourKongs () {
 	return kongs === 4;
 }
 
-function testAllConcealedAllScoreing () {
+function testAllConcealedAllScoring () {
 	return testNoChows() && testAllFeaturesConcealed();
 }
 
@@ -352,4 +365,50 @@ function testLittleFourWinds () {
 
 function testNineGates () {
 
+	let suit;
+
+	let count1 = 0;
+	let found2 = false;
+	let found3 = false;
+	let found4 = false;
+	let found5 = false;
+	let found6 = false;
+	let found7 = false;
+	let found8 = false;
+	let count9 = 0;
+
+	let tileCount = 0;
+
+	for (var i = 0; i < hand.length; i ++) {
+		let handTile = hand[i];
+		if (handTile.type === TYPE_SPECIAL) continue;
+		if (!handTile.suit) return false;
+		if (!suit) suit = handTile.suit;
+		else if (handTile.suit !== suit) return false;
+
+		switch (handTile.value) {
+			case 1: count1 ++;									break;
+			case 2: if (found2) return false; found2 = true;	break;
+			case 3: if (found3) return false; found3 = true;	break;
+			case 4: if (found4) return false; found4 = true;	break;
+			case 5: if (found5) return false; found5 = true;	break;
+			case 6: if (found6) return false; found6 = true;	break;
+			case 7: if (found7) return false; found7 = true;	break;
+			case 8: if (found8) return false; found8 = true;	break;
+			case 9: count9 ++;									break;
+		}
+
+		tileCount ++;
+	}
+
+	return count1 > 2
+			&& found2
+			&& found3
+			&& found4
+			&& found5
+			&& found6
+			&& found7
+			&& found8
+			&& count9 > 2
+			&& tileCount === 14;
 }
