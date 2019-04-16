@@ -53,7 +53,7 @@ a {
 	overflow-y: scroll;
 	height: calc(80vh - 40vw);
 
-	font-size: 4vw;
+	font-size: 3.5vw;
 	color: #fff;
 
 	justify-content: center;
@@ -87,7 +87,7 @@ a {
 }
 
 .breakdown-points {
-	font-family: 'Fira Mono', monospace;
+	font-family: 'Overpass Mono', monospace;
 	text-align: right;
 	color: #fc5;
 	white-space: pre;
@@ -333,4 +333,23 @@ input[type="checkbox"]:checked+label::after {
 	background-color: #222;
 	color: #fff;
 	box-shadow: 0 0 3vw rgba(0,0,0,0.6);
+}
+
+.mobile-only {
+	position: fixed;
+	padding: 15vw;
+	background-color: #050;
+	color: white;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	font-size: 4vw;
+	box-shadow: 0 0 10vw black;
+	z-index: 100;
+}
+
+@media (min-height:110vw) {
+	.mobile-only {
+		display: none;
+	}
 }

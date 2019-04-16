@@ -88,6 +88,7 @@ function testNoScoringFeatures() {
 		switch(feature.type) {
 			case FEATURE_TYPE_PAIR:
 				if (firstTile.pairValue) return false;
+				break;
 			case FEATURE_TYPE_PUNG:
 			case FEATURE_TYPE_KONG:
 				return false;

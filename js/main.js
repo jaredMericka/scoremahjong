@@ -30,7 +30,8 @@ function updateScore () {
 		let featureScore = feature.getScore();
 		score += featureScore
 		
-		breakdownRows_points.push(getBreakdownRow(feature.getString(), featureScore));
+		if (feature.type)
+			breakdownRows_points.push(getBreakdownRow(feature.getString(), featureScore));
 	}
 
 	// Test for unconventional limit hands
@@ -154,6 +155,11 @@ function updateScore () {
 				breakdownRows_doublers.push(getBreakdownRow('Seat season', 1));
 			}
 			
+			if (testAllSimples()) {
+				doublers += 1;
+				breakdownRows_doublers.push(getBreakdownRow('All simples', 1));
+			}
+
 			if (testAllFeaturesConcealed()) {
 				doublers += 2;
 				breakdownRows_doublers.push(getBreakdownRow('All features concealed', 2));
@@ -161,7 +167,7 @@ function updateScore () {
 				doublers += 1;
 				breakdownRows_doublers.push(getBreakdownRow('All but the last tile concealed', 1));
 			}
-			
+
 			if (testAllOneSuit()) {
 				doublers += 4;
 				breakdownRows_doublers.push(getBreakdownRow('All one suit', 4));
@@ -399,6 +405,7 @@ function getBreakdownRow(message, score) {
 
 function toggleBreakdown() {
 	document.querySelector('.hand').classList.toggle('show-breakdown');
+	document.querySelector('.hand-breakdown').scrollTop = 0;
 }
 
 function ucFirst(string) {

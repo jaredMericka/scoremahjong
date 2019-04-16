@@ -18,7 +18,7 @@ let SUIT_BAMBOO		= 'bamboo';
 let TYPE_SIMPLE		= 'simple';
 let TYPE_TERMINAL	= 'terminal';
 let TYPE_WIND		= 'wind';
-let TYPE_ARROW		= 'arrow';
+let TYPE_ARROW		= 'dragon';
 let TYPE_SPECIAL	= 'special';
 
 let VALUE_WIND_EAST		= 'east';
